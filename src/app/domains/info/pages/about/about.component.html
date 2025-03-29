@@ -1,0 +1,11 @@
+<div class="w-96 h-auto m-4 p-2 bg-gray-200 space-y-2">
+  <p class="p-1 border">
+    <input type="number" [value]="duration()" (change)="changeDuration($event)">
+  </p>
+  <p class="p-1 border">
+    <input type="text" [value]="message()" (change)="changeMessage($event)">
+  </p>
+  <p>
+    <app-counter [duration]="duration()" [message]="message()"/>
+  </p>
+</div>
