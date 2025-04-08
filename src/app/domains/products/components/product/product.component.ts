@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Product } from '../../../shared/models/product.model';
 
 @Component({
   selector: 'app-product',
@@ -7,22 +8,20 @@ import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent implements OnInit{
-  /* img:any = "https://picsum.photos/200/300?r=" + Math.random(); */
-  @Input({required: true}) img: string = '';
-  @Input({required: true}) title: string = '';
-  @Input({required: true}) price: number = 0;
-
+  @Input({required: true}) product!: Product;
+ 
   @Output() addToCard = new EventEmitter();
   constructor() {
 
   }
+  
   ngOnInit(): void {
    
   }
 
   addToCardHandler() {
     console.log("tocando")
-    this.addToCard.emit(`Producto ${this.title} enviado`)
+    this.addToCard.emit(`Producto ${this.product.title} enviado`)
   }
 
 }
