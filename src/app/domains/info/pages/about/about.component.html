@@ -1,11 +1,18 @@
-<div class="w-96 h-auto m-4 p-2 bg-gray-200 space-y-2">
-  <p class="p-1 border">
+<div class="w-full h-auto p-4 bg-gray-200 space-y-2">
+  <h1 class="text-2xl font-bold">About</h1>
+  <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam doloremque, exercitationem molestias velit tempore sequi nobis impedit rerum dolorem qui blanditiis veniam beatae necessitatibus voluptatum rem corrupti odit ipsam? Ratione.</p>
+  <!-- <p class="p-1 border">
     <input type="number" [value]="duration()" (change)="changeDuration($event)">
   </p>
   <p class="p-1 border">
     <input type="text" [value]="message()" (change)="changeMessage($event)">
+  </p> -->
+  <p class="text-xs font-medium">Número de clientes: 
   </p>
+  <span class="mb-3 block text-sm">
+    <app-counter [duration]="duration()" [message]="message()" *ngIf="duration() > 0"/>
+  </span>  
   <p>
-    <app-counter [duration]="duration()" [message]="message()"/>
+    <app-wave-audio [audioUrl]="audioUrl()" *ngIf="audioUrl() !== ''"/>
   </p>
 </div>

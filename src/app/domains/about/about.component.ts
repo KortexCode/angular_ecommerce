@@ -1,0 +1,1 @@
+audio = new Audio('/assets/luna_wakuwaku.mp3'); 
