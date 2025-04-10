@@ -5,8 +5,8 @@ html {
 }
 body {
     min-height: 100vh;
-    background: linear-gradient(to right, #0a0a0a);
-    background: linear-gradient(to right, #0a0a0a);
+    background: white;
+    /* background: linear-gradient(to right, #0a0a0a); */
 }
 body::before {
     content: "";

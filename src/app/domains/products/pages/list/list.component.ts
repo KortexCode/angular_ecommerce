@@ -1,8 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { ProductComponent } from '../../components/product/product.component';
-import { CartListService } from '../../../shared/services/cart-list.service';
-import { Product, ProductCart } from '../../../shared/models/product.model';
-
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ProductComponent } from '@products/components/product/product.component';
+import { CartListService } from '@shared/services/cart-list.service';
+import { Product } from '@shared/models/product.model';
+import { ProductsService } from '@services/products.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-list',
   imports: [ProductComponent],
@@ -10,67 +11,43 @@ import { Product, ProductCart } from '../../../shared/models/product.model';
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
-
+  private _productService = inject(ProductsService);
+  private _productsSubscription?: Subscription; // Para manejar la desuscripción (opcional)
+  private _cart = inject(CartListService);
   productList = signal<Product[]>([]); //lista de productos en el home
-  cartList: ProductCart[] = []; //lista de productos en el carrito
-  productData: Product[] = [
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto A',
-      description: 'Descripción del producto A',
-      price: 30.4,
-      id: 1,
-    },
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto B',
-      description: 'Descripción del producto B',
-      price: 49.50,
-      id: 2,
-    },
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto C',
-      description: 'Descripción del producto C',
-      price: 12.75,
-      id: 3,
-    },
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto D',
-      description: 'Descripción del producto D',
-      price: 99.00,
-      id: 4,
-    },
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto E',
-      description: 'Descripción del producto E',
-      price: 19.99,
-      id: 5,
-    },
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto F',
-      description: 'Descripción del producto F',
-      price: 29.99,
-      id: 6,
-    },
-    {
-      img: `https://picsum.photos/200/300?r=${Math.random()}`,
-      title: 'Producto G',
-      description: 'Descripción del producto G',
-      price: 39.99,
-      id: 7,
-    },
-  ];
-
-  constructor(private _cart: CartListService) {
-    
+  
+  constructor() {
+      
   }
 
   ngOnInit(): void {
-    this.productList.set(this.productData);
+    this.getProducts();
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribirse para evitar fugas de memoria (opcional pero recomendado)
+    if (this._productsSubscription) {
+      this._productsSubscription.unsubscribe();
+    }
+  }
+
+  getProducts() {
+    this._productsSubscription = this._productService.getProducts().subscribe({
+      next: (products) => {
+        console.log('productos recibidos:', products);
+        this.productList.set(products);
+        // Aquí puedes realizar otras acciones con los datos recibidos
+      },
+      error: (error) => {
+        console.error('Error al obtener los productos:', error);
+        // Aquí puedes mostrar un mensaje de error al usuario,
+        // registrar el error, o intentar una recuperación.
+      },
+      // complete: () => {
+      //   console.log('La petición de productos se ha completado.');
+      //   // Esto rara vez se usa en peticiones HTTP simples.
+      // }
+    });
   }
 
   addToCardHandler(product: Product) {

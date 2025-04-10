@@ -1,10 +1,11 @@
 
 export interface Product {
     id: number;
-    img: string;
+    image: string;
     title: string;
     price: number;
     description: string;
+    category: string;
 }
 
 export interface ProductCart extends Product {
@@ -12,8 +13,5 @@ export interface ProductCart extends Product {
     quantityPrice: number;
 }
 
-export interface ProductResponse {
-    products: Product[]; 
-}
 
 
