@@ -19,9 +19,9 @@ export class ProductComponent implements OnInit{
    
   }
 
-  addToCardHandler() {
+  addToCardHandler(product: Product) {
     console.log("tocando")
-    this.addToCard.emit(`Producto ${this.product.title} enviado`)
+    this.addToCard.emit(product)
   }
 
 }

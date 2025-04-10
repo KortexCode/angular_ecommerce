@@ -1,8 +1,8 @@
-<div class="list-products-container w-[90%] mt-10 my-0 mx-auto gap-2">
+<div class="list-products-container w-[90%] mt-10 my-0 mx-auto gap-2 z-40">
   @for (product of productList(); track product; let id = $index) {
     <app-product
-    [product] = "product"
-    (addToCard)="productsCreated($event)"/>
+    [product]= "product"
+    (addToCard)= "addToCardHandler($event)"/>
   }@empty {
     <div class="col-span-3">
       <h1>No hay productos</h1>

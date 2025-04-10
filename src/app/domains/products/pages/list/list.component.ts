@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ProductComponent } from '../../components/product/product.component';
-import { Product } from '../../../shared/models/product.model';
+import { CartListService } from '../../../shared/services/cart-list.service';
+import { Product, ProductCart } from '../../../shared/models/product.model';
 
 @Component({
   selector: 'app-list',
@@ -10,8 +11,8 @@ import { Product } from '../../../shared/models/product.model';
 })
 export class ListComponent implements OnInit {
 
-  productList = signal<Product[]>([]);
-
+  productList = signal<Product[]>([]); //lista de productos en el home
+  cartList: ProductCart[] = []; //lista de productos en el carrito
   productData: Product[] = [
     {
       img: `https://picsum.photos/200/300?r=${Math.random()}`,
@@ -48,17 +49,32 @@ export class ListComponent implements OnInit {
       price: 19.99,
       id: 5,
     },
+    {
+      img: `https://picsum.photos/200/300?r=${Math.random()}`,
+      title: 'Producto F',
+      description: 'Descripción del producto F',
+      price: 29.99,
+      id: 6,
+    },
+    {
+      img: `https://picsum.photos/200/300?r=${Math.random()}`,
+      title: 'Producto G',
+      description: 'Descripción del producto G',
+      price: 39.99,
+      id: 7,
+    },
   ];
 
-  constructor() {
-
+  constructor(private _cart: CartListService) {
+    
   }
 
   ngOnInit(): void {
     this.productList.set(this.productData);
   }
 
-  productsCreated(event: string) {
-    console.log("evento", event);
+  addToCardHandler(product: Product) {
+    console.log('agregando producto', product);
+    this._cart.addProduct(product);
   }
 }
