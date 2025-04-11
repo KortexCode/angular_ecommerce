@@ -65,7 +65,7 @@
   
   <!-- Sidebar Right-->
   <div
-  class="fixed flex flex-col border-l-2 border-teal-900 shadow-md top-0 right-0 z-40 w-72 h-screen overflow-y-auto
+  class="fixed flex flex-col justify-between border-l-2 border-teal-900 shadow-md top-0 right-0 z-40 w-78 h-screen overflow-y-auto
    transition-transform bg-teal-600" [class.translate-x-full]="!toggleSidebar()"
 >
 
@@ -88,36 +88,41 @@
         </svg>
       </button>
     </div>
-    <div class="w-full p-2">
+    <div class="flex flex-col w-full p-2">
       @for (product of cartList(); track product.id) { 
-        <div class="flex justify-between items-center mb-2 p-2 rounded-lg border bg-teal-500">
-          <!-- Aquí van los botones para aumentar o restar cantidad -->
-          <div class="flex">
-            <p class="h-auto mr-1 text-teal-900 font-semibold">{{product.title}}</p>
-            <span class="w-[18px] mr-1 text-teal-900 font-semibold">x{{product.quantity}}</span>
-            <button  class="flex justify-center items-center shrink-0 cursor-pointer w-[25px] h-[25px] mr-1 pb-1 bg-teal-700 rounded-lg text-xl text-teal-900
-             font-bold hover:bg-teal-800" (click)="increaseQuantityHandler(product.id)">+</button>
-            <button *ngIf="product.quantity >= 2" class="flex justify-center items-center cursor-pointer w-[25px] h-[25px] pb-1 bg-teal-700 rounded-lg text-xl text-teal-900
-             font-bold hover:bg-teal-800" (click)="decreaseQuantityHandler(product.id)">-</button>
-           </div>
-          <div class="flex items-center gap-2">
-            <p class="text-teal-900 font-bold">$<span class="text-teal-900 font-semibold">{{product.quantityPrice}}</span></p>  
-            <button class="cursor-pointer mt-[2px]" (click)="removeProductHandler(product.id)">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="3"
-                stroke="currentColor"
-                class="w-4 h-4 text-teal-800 hover:text-teal-900"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+        <div class="mb-2 px-3 py-3 rounded-lg border bg-teal-500">
+          <p class="mb-3 text-center text-teal-900 font-bold truncate">{{product.title}}</p>
+          <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-1">
+              <img  [src]="product.image" alt="product.title" class="w-[50px] h-[50px] rounded-lg border-[1px]
+               border-teal-900 shadow-lg truncate">
+              <span class="w-[18px] mr-1 text-teal-900 font-semibold">x{{product.quantity}}</span>
+              <button  class="flex justify-center items-center shrink-0 cursor-pointer w-[25px] h-[25px] pb-1 bg-teal-700
+               rounded-lg text-xl text-teal-900
+               font-bold hover:bg-teal-800" (click)="increaseQuantityHandler(product.id)">+</button>
+              <button *ngIf="product.quantity >= 2" class="flex justify-center items-center cursor-pointer w-[25px]
+                 h-[25px] pb-1 bg-teal-700 rounded-lg text-xl text-teal-900
+               font-bold hover:bg-teal-800" (click)="decreaseQuantityHandler(product.id)">-</button>
+             </div>
+            <div class="flex items-center gap-2">
+              <p class="text-teal-900 font-bold">$<span class="text-teal-900 font-semibold">{{product.quantityPrice}}</span></p>  
+              <button class="cursor-pointer mt-[2px]" (click)="removeProductHandler(product.id)">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-4 h-4 text-teal-800 hover:text-teal-900"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       }@empty {
@@ -125,6 +130,10 @@
       }
       <p class="text-gray-800 text-center">Total: ${{total()}}</p>
     </div>
+    <button class="w-[95%] my-0 mx-auto mb-2 p-3 rounded-lg bg-teal-700 hover:bg-teal-800
+     text-lg text-white font-bold cursor-pointer">
+      Tramitar compra
+    </button>
 
 </div>
   

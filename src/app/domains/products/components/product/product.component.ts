@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { Product } from '../../../shared/models/product.model';
-
+import { Product } from '@shared/models/product.model';
+import { UpperCasePipe } from '@angular/common';
+import { TimesAgoPipe } from '@shared/pipes/times-ago.pipe';
+import { HighlightDirective } from '@shared/directives/highlight.directive';
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [UpperCasePipe, TimesAgoPipe, HighlightDirective],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
