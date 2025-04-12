@@ -6,7 +6,7 @@ import { Product, ProductCart } from '../models/product.model';
 })
 export class CartListService {  
   cart = signal<ProductCart[]>([]);
-  total = computed(() => this.cart().reduce((total, price) => total + price.quantityPrice, 0));
+  total = computed(() => (this.cart().reduce((total, price) => total + price.quantityPrice, 0).toFixed(2)));
   cartCount = computed(() => this.cart().length);
   constructor() { }
 
