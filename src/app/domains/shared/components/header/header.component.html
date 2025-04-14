@@ -1,4 +1,4 @@
-<nav class="bg-teal-500">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-teal-500">
     <div
       class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 px-4"
     >
@@ -9,29 +9,32 @@
             class="h-6 mr-3"
             alt="Flowbite Logo"
           />
-          <span class="self-center text-xl font-semibold whitespace-nowrap"
-            >Flowbite</span
-          >
+          
         </a>
         <ul class="flex space-x-6">
-          <li>
+          <li class="text-gray-700">
             <a
-              href="#"
-              class="block underline hover:underline"
-              aria-current="page"
+              routerLink="/home"
+              routerLinkActive="link-active-nav"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="block hover:underline"
               >Home</a
             >
           </li>
-          <li>
-            <a
-              href="#"
+          <li class="text-gray-700">
+            <a 
+              routerLink="/about"
+              routerLinkActive="link-active-nav"
+              [routerLinkActiveOptions]="{ exact: true }"
               class="block hover:underline"
               >About</a
             >
           </li>
-          <li>
+          <li class="text-gray-700">
             <a
-              href="#"
+              routerLink="/services"
+              routerLinkActive="link-active-nav"
+              [routerLinkActiveOptions]="{ exact: true }"
               class="block hover:underline"
               >Services</a
             >

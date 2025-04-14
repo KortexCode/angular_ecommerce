@@ -1,10 +1,11 @@
 import { Component, signal, computed, inject } from '@angular/core';
-import { NgIf, CurrencyPipe, DecimalPipe } from '@angular/common';
+import { NgIf, CurrencyPipe } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartListService } from '../../services/cart-list.service';
 
 @Component({
   selector: 'app-header',
-  imports: [ NgIf, CurrencyPipe, DecimalPipe ],
+  imports: [ NgIf, CurrencyPipe, RouterLink, RouterLinkActive ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
