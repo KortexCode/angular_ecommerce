@@ -1,11 +1,15 @@
+import { Category } from "./category.model";
 
 export interface Product {
     id: number;
-    image: string;
+    slug: string;
+    images: string[];
     title: string;
     price: number;
     description: string;
-    category: string;
+    category: Category;
+    creationAt: string;
+    updatedAt: string
 }
 
 export interface ProductCart extends Product {

@@ -7,9 +7,12 @@ import { Product } from '../domains/shared/models/product.model';
 })
 export class ProductsService {
   private _http = inject(HttpClient);
-  private _url = 'https://fakestoreapi.com/products';
+  private _url = 'https://api.escuelajs.co/api/v1';
 
   getProducts() {
-    return this._http.get<Product[]>(this._url);
+    return this._http.get<Product[]>(`${this._url}/products`);
+  }
+  getProduct(id: string | undefined){
+    return this._http.get<Product>(`${this._url}/products/${id}`)
   }
 }

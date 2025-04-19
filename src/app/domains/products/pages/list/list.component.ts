@@ -34,7 +34,6 @@ export class ListComponent implements OnInit {
   getProducts() {
     this._productsSubscription = this._productService.getProducts().subscribe({
       next: (products) => {
-        console.log('productos recibidos:', products);
         this.productList.set(products);
         // Aquí puedes realizar otras acciones con los datos recibidos
       },
@@ -51,7 +50,6 @@ export class ListComponent implements OnInit {
   }
 
   addToCardHandler(product: Product) {
-    console.log('agregando producto', product);
     this._cart.addProduct(product);
   }
 }
