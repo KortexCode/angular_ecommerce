@@ -7,7 +7,6 @@ import { ProductDetailComponent } from '@products/pages/product-detail/product-d
 export const routes: Routes = [
   {path:'', component: LayoutComponent, children: [
     {path:'home', title: 'Home', component: ListComponent},
-    {path:'home/:id', title: 'Home Category', component: ListComponent},
     {path:'about', title: 'About', component: AboutComponent},
     {path:'product/:id', title: 'Product Detail', component: ProductDetailComponent},
     {path:'', redirectTo:'/home', pathMatch:'full'},

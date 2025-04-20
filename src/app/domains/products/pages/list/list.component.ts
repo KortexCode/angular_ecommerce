@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { ProductComponent } from '@products/components/product/product.component';
 import { CartListService } from '@shared/services/cart-list.service';
 import { Product } from '@shared/models/product.model';
@@ -13,26 +13,26 @@ import { RouterLink } from '@angular/router';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnChanges {
   private _productService = inject(ProductsService);
   private _categoriesService = inject(CategoriesService);
   private _productsSubscription?: Subscription; // Para manejar la desuscripción (opcional)
   private _cart = inject(CartListService);
   productList = signal<Product[]>([]); //lista de productos en el home
   categoryList = signal<Category[]>([]); //lista de categorias en el home
-  @Input() id?: number | null;
+  @Input() category_id?: string;
   
   constructor() {
       
   }
 
   ngOnInit(): void {
-    this._getCategories();
-    if(this.id){
-      this._getProductsByCategory(this.id);
-    }else {
-      this._getProducts();
-    }
+    this._getCategories(); 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+    this._getProducts();
   }
 
   ngOnDestroy(): void {
@@ -43,7 +43,7 @@ export class ListComponent implements OnInit {
   }
 
   private _getProducts() {
-    this._productsSubscription = this._productService.getProducts().subscribe({
+    this._productsSubscription = this._productService.getProducts(this.category_id).subscribe({
       next: (products) => {
         this.productList.set(products);
         console.log(products)
@@ -71,19 +71,7 @@ export class ListComponent implements OnInit {
     })
   }
 
-  private _getProductsByCategory(id:number) {
-
-    this._productService.getProductsByCategory(id).subscribe(
-      {
-        next: (productsByCategory)=> {
-          console.log("producto por", productsByCategory)
-          this.productList.set(productsByCategory)
-        },
-        error: (error) => console.log(error)
-      }
-    )
-  }
-
+  
   addToCardHandler(product: Product) {
     this._cart.addProduct(product);
   }
