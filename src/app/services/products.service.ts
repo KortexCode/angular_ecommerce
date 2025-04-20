@@ -15,4 +15,7 @@ export class ProductsService {
   getProduct(id: string | undefined){
     return this._http.get<Product>(`${this._url}/products/${id}`)
   }
+  getProductsByCategory(id:number) {
+    return this._http.get<Product[]>(`${this._url}/products/?categoryId=${id}`)
+  }
 }
