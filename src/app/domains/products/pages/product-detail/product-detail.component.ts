@@ -10,7 +10,7 @@ import { CartListService } from '@shared/services/cart-list.service';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent implements OnInit{
+export default class ProductDetailComponent implements OnInit{
   //Servicio para carrito(estado global)
   private _cart = inject(CartListService);
   //Servicio para productos

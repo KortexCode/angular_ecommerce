@@ -9,7 +9,7 @@ import { WaveAudioComponent } from '../../components/wave-audio/wave-audio.compo
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })
-export class AboutComponent {
+export default class AboutComponent {
   //Se crean dos propiedades tipo signal para manejar reactividad
   duration = signal(1000);
   message = signal('mensaje');

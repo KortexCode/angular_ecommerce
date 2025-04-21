@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent implements OnInit, OnChanges {
+export default class ListComponent implements OnInit, OnChanges {
   private _productService = inject(ProductsService);
   private _categoriesService = inject(CategoriesService);
   private _productsSubscription?: Subscription; // Para manejar la desuscripción (opcional)
@@ -64,7 +64,8 @@ export class ListComponent implements OnInit, OnChanges {
   private _getCategories() {
     this._categoriesService.getCategories().subscribe({
       next: (categories) => {
-        this.categoryList.set(categories);
+        const newList = categories.slice(0, 4)
+        this.categoryList.set(newList);
         console.log(categories)
       },
       error: (error) => console.log("error", error)
