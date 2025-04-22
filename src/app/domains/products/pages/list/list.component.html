@@ -1,7 +1,7 @@
-<section *ngIf="!isLoading()">
+<section>
   <div class="my-0 mx-auto flex justify-center mt-1 mb-4">
     <div class="w-auto flex flex-col items-center justify-center">
-      <ul class="flex  space-x-6">
+      <ul class="flex flex-wrap justify-center space-x-6 space-y-6">
         <li>
           <a routerLink="/home" routerLinkActive="bg-teal-400" [routerLinkActiveOptions]="{ exact: true }"
            class="p-2 py-[4.5px] rounded-lg font-medium hover:bg-gray-400">All</a>
@@ -14,10 +14,10 @@
           </li>
         }
       </ul>
-      <hr class="w-full mt-2 mb-2 border-1 border-gray-300">
+      <hr class="w-full mb-2 border-1 border-gray-300">
     </div>
   </div>
-  <div class="w-[90%] my-0 mx-auto gap-2 z-40" [class.list-products-container]="!noProducts()">
+  <div class="w-[90%] my-0 mx-auto gap-2 z-40" [class.list-products-container]="!noProducts()" *ngIf="!isLoading()">
     @for (product of productList(); track product; let id = $index) {
       <app-product
       [product]= "product"
@@ -28,21 +28,21 @@
       </div>
     }
   </div>
-</section>
-<section class="w-[95%] my-0 mx-auto mt-4" *ngIf="isLoading()">
-  <div class="list-products-container gap-2 animate--skeleton">
-    <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
-      bg-gray-400">
+  <section class="w-[95%] my-0 mx-auto mt-4" *ngIf="isLoading()">
+    <div class="list-products-container gap-2 animate--skeleton">
+      <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
+        bg-gray-400">
+      </div>
+      <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
+        bg-gray-400">
+      </div>
+      <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
+        bg-gray-400">
+      </div>
+      <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
+        bg-gray-400">
+      </div>
     </div>
-    <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
-      bg-gray-400">
-    </div>
-    <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
-      bg-gray-400">
-    </div>
-    <div class="w-full h-[370px] mb-3 rounded-lg border border-gray-200 shadow-md
-      bg-gray-400">
-    </div>
-  </div>
+  </section>
 </section>
 
