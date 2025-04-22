@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
+import { Component, computed, inject, Input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { ProductComponent } from '@products/components/product/product.component';
 import { CartListService } from '@shared/services/cart-list.service';
 import { Product } from '@shared/models/product.model';
@@ -6,10 +6,11 @@ import { ProductsService } from '@services/products.service';
 import { Subscription } from 'rxjs';
 import { CategoriesService } from '@services/categories.service';
 import { Category } from '@shared/models/category.model';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-list',
-  imports: [ProductComponent, RouterLink],
+  imports: [ProductComponent, RouterLink, RouterLinkActive, NgIf],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -20,6 +21,10 @@ export default class ListComponent implements OnInit, OnChanges {
   private _cart = inject(CartListService);
   productList = signal<Product[]>([]); //lista de productos en el home
   categoryList = signal<Category[]>([]); //lista de categorias en el home
+  noProducts = computed(()=> {
+    return this.productList().length ? false : true;
+  })
+  isLoading = signal<boolean>(true);
   @Input() category_id?: string;
   
   constructor() {
@@ -31,7 +36,7 @@ export default class ListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+    this.isLoading.set(true);
     this._getProducts();
   }
 
@@ -46,7 +51,7 @@ export default class ListComponent implements OnInit, OnChanges {
     this._productsSubscription = this._productService.getProducts(this.category_id).subscribe({
       next: (products) => {
         this.productList.set(products);
-        console.log(products)
+        this.isLoading.set(false);
         // Aquí puedes realizar otras acciones con los datos recibidos
       },
       error: (error) => {
@@ -64,7 +69,7 @@ export default class ListComponent implements OnInit, OnChanges {
   private _getCategories() {
     this._categoriesService.getCategories().subscribe({
       next: (categories) => {
-        const newList = categories.slice(0, 4)
+        const newList = categories.slice(0, 5)
         this.categoryList.set(newList);
         console.log(categories)
       },

@@ -18,15 +18,17 @@ export default class ProductDetailComponent implements OnInit{
   //Parámetro de ruta
   @Input() id?: string;
   product = signal<Product | null>(null);
-  cover = signal<string>('');
+  cover = signal<string>('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=');
+  alt = signal<string>('');
   ngOnInit(): void {
-   
     this._productService.getProduct(this.id).subscribe(
       {
         next: (data) => {
           this.product.set(data);
+          this.alt.set(data.title);
           if(data.images.length){
             this.cover.set(data.images[0]);
+            
           }
         },
         error: (error) => console.log(error)

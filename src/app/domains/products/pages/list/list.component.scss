@@ -1,4 +1,35 @@
+@import '../../../../mixin';
+
 .list-products-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.animate--skeleton > div{
+  opacity: 1; 
+  animation: shiny-pulse 2s ease-in infinite;
+}
+.animate--skeleton :nth-child(1) {
+  @include delay(100ms);
+}
+.animate--skeleton :nth-child(2) {
+  @include delay(200ms);
+}
+.animate--skeleton :nth-child(3) {
+  @include delay(300ms);
+}
+.animate--skeleton :nth-child(4) {
+  @include delay(400ms);
+}
+
+
+@keyframes shiny-pulse {
+  0% {
+    opacity: 1; /* Opacidad completa al inicio */
+  }
+  50% {
+    opacity: 0; /* Opacidad reducida a la mitad de la animación (ajústala a tu gusto, 0.4 = 40%) */
+  }
+  100% {
+    opacity: 1; /* Opacidad completa al final, lista para repetir suavemente */
+  }
 }
