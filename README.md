@@ -1,59 +1,81 @@
-# Ecommerce
+# Nombre del Proyecto: Tu E-commerce con Angular 19
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Angular](https://img.shields.io/badge/Angular-19-DD0031?style=flat-square&logo=angular&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Sass](https://img.shields.io/badge/Sass-1.x-CC6699?style=flat-square&logo=sass&logoColor=white)
 
-## Development server
+> Un proyecto de estudio para la creación de un e-commerce utilizando Angular 19, estilizado con Tailwind CSS y SCSS, y consumiendo datos de la API de Platzi Fake Store.
 
-To start a local development server, run:
+## Tabla de Contenidos
 
-```bash
-ng serve
-```
+- [Descripción del Proyecto](#descripción-del-proyecto)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Características Principales](#características-principales)
+- [Cómo Empezar](#cómo-empezar)
+  - [Prerrequisitos](#prerrequisitos)
+  - [Instalación](#instalación)
+  - [Ejecución](#ejecución)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Uso de la API de Platzi Fake Store](#uso-de-la-api-de-platzi-fake-store)
+- [Personalización](#personalización)
+- [Contribución](#contribución)
+- [Licencia](#licencia)
+- [Autor](#autor)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Descripción del Proyecto
 
-## Code scaffolding
+Este proyecto es un e-commerce desarrollado como parte de mi aprendizaje en el curso de Angular. El objetivo principal es practicar y consolidar mis conocimientos en el desarrollo de aplicaciones web modernas utilizando el framework Angular en su versión 19. La interfaz de usuario se ha construido con la ayuda de Tailwind CSS para un diseño responsivo y utilitario, mientras que SCSS se utiliza para una mejor organización y extensibilidad de los estilos. Los datos de los productos mostrados en la aplicación se obtienen de la API pública y gratuita de Platzi Fake Store, lo que permite simular un entorno de comercio electrónico real sin necesidad de configurar un backend propio.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Tecnologías Utilizadas
 
-```bash
-ng generate component component-name
-```
+- **Angular:** Versión 19
+- **Tailwind CSS:** Framework de CSS utilitario para un diseño rápido y flexible.
+- **SCSS:** Preprocesador de CSS que añade funcionalidades como variables, anidación y mixins.
+- **Platzi Fake Store API:** API RESTful pública para obtener datos de productos simulados.
+- **TypeScript:** Lenguaje de programación principal para el desarrollo en Angular.
+- **Node.js y npm (o yarn):** Entorno de ejecución de JavaScript y gestor de paquetes.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Características Principales
 
-```bash
-ng generate --help
-```
+- **Visualización de Productos:** Muestra una lista de productos obtenidos de la API de Platzi Fake Store.
+- **Detalle del Producto:** Permite ver la información detallada de un producto específico.
+- **Diseño Responsivo:** La interfaz se adapta a diferentes tamaños de pantalla gracias a Tailwind CSS.
+- **Estilización Personalizada:** Se utiliza SCSS para extender y organizar los estilos de Tailwind CSS.
+- **Integración de API:** Conexión y consumo de datos desde una API externa.
+- **Componentes Reutilizables:** Estructura del proyecto basada en componentes reutilizables de Angular.
+- **Rutas:** Navegación entre las diferentes secciones de la aplicación.
 
-## Building
+## Cómo Empezar
 
-To build the project run:
+Sigue estos pasos para clonar y ejecutar el proyecto en tu máquina local.
 
-```bash
-ng build
-```
+### Prerrequisitos
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Asegúrate de tener instalado lo siguiente en tu sistema:
 
-## Running unit tests
+- **Node.js:** (Se recomienda la última versión LTS) - [https://nodejs.org/](https://nodejs.org/)
+- **npm:** (Se instala automáticamente con Node.js) o **yarn:** (Opcional) - [https://yarnpkg.com/](https://yarnpkg.com/)
+- **Angular CLI:** (Interfaz de línea de comandos de Angular)
+  ```bash
+  npm install -g @angular/cli
+  # o con yarn
+  # yarn global add @angular/cli
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Instalación de dependencias
+- Ejecutar el comando:
+    ```bash
+    npm install
+    # o con yarn
+    # yarn install
 
-```bash
-ng test
-```
+### Ejecución en modo desarrollo
+- Ejecutar el comando:
+    ```bash
+    ng serve
 
-## Running end-to-end tests
+## Sitio Web Demo
 
-For end-to-end (e2e) testing, run:
+Puedes ver una demostración en vivo de este proyecto en la siguiente dirección:
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[https://angular-ecommerce-kappa-amber.vercel.app/home](https://angular-ecommerce-kappa-amber.vercel.app/home)

@@ -69,9 +69,8 @@ export default class ListComponent implements OnInit, OnChanges {
   private _getCategories() {
     this._categoriesService.getCategories().subscribe({
       next: (categories) => {
-        const newList = categories.slice(0, 5)
+        const newList = categories.slice(0, 5);
         this.categoryList.set(newList);
-        console.log(categories)
       },
       error: (error) => console.log("error", error)
     })

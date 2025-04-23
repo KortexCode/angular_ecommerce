@@ -1,8 +1,8 @@
 <section>
   <div class="my-0 mx-auto flex justify-center mt-1 mb-4">
     <div class="w-auto flex flex-col items-center justify-center">
-      <ul class="flex flex-wrap justify-center space-x-6 space-y-6">
-        <li>
+      <ul class="w-full flex flex-wrap justify-center space-x-6 space-y-6" *ngIf="!isLoading()">
+        <li class=self-start>
           <a routerLink="/home" routerLinkActive="bg-teal-400" [routerLinkActiveOptions]="{ exact: true }"
            class="p-2 py-[4.5px] rounded-lg font-medium hover:bg-gray-400">All</a>
         </li>
